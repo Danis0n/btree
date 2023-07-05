@@ -98,7 +98,7 @@ public class BTree<K extends Comparable<K>, V> implements Iterable<BTree.Entry<K
             return "Entry{" +
                     "key=" + key +
                     ", value=" + value +
-                    '}';
+                    '}' + '\n';
         }
 
         @Override
@@ -192,24 +192,24 @@ public class BTree<K extends Comparable<K>, V> implements Iterable<BTree.Entry<K
         z.leaf = y.leaf;
         z.n = t - 1;
 
-        for (int j = 0; j < t - 1; j++) {
-            z.entries[j] = y.entries[j + t];
-            y.entries[j + t] = null;
+        for (int i = 0; i < t - 1; i++) {
+            z.entries[i] = y.entries[i + t];
+            y.entries[i + t] = null;
         }
         if (!y.leaf) {
-            for (int j = 0; j < t; j++) {
-                z.children[j] = y.children[j + t];
-                y.children[j + t] = null;
+            for (int i = 0; i < t; i++) {
+                z.children[i] = y.children[i + t];
+                y.children[i + t] = null;
             }
         }
         y.n = t - 1;
-        for (int j = x.n; j >= pos + 1; j--) {
-            x.children[j + 1] = x.children[j];
+        for (int i = x.n; i >= pos + 1; i--) {
+            x.children[i + 1] = x.children[i];
         }
         x.children[pos + 1] = z;
 
-        for (int j = x.n - 1; j >= pos; j--) {
-            x.entries[j + 1] = x.entries[j];
+        for (int i = x.n - 1; i >= pos; i--) {
+            x.entries[i + 1] = x.entries[i];
         }
         x.entries[pos] = y.entries[t - 1];
         x.n = x.n + 1;
@@ -242,9 +242,9 @@ public class BTree<K extends Comparable<K>, V> implements Iterable<BTree.Entry<K
     private List<Entry<K,V>> searchLess(Node<K,V> node, K key) {
         List<Entry<K,V>> entries = new ArrayList<>();
 
-        for (int j = 0; j < node.n; j++) {
-            if (less(node.entries[j].key, key))
-                entries.add(node.entries[j]);
+        for (int i = 0; i < node.n; i++) {
+            if (less(node.entries[i].key, key))
+                entries.add(node.entries[i]);
         }
 
         for (Node<K,V> x : node.children) {
@@ -262,9 +262,9 @@ public class BTree<K extends Comparable<K>, V> implements Iterable<BTree.Entry<K
     private List<Entry<K,V>> searchMore(Node<K,V> node, K key) {
         List<Entry<K,V>> entries = new ArrayList<>();
 
-        for (int j = 0; j < node.n; j++) {
-            if (more(node.entries[j].key, key))
-                entries.add(node.entries[j]);
+        for (int i = 0; i < node.n; i++) {
+            if (more(node.entries[i].key, key))
+                entries.add(node.entries[i]);
         }
 
         for (Node<K,V> x : node.children) {
@@ -340,7 +340,6 @@ public class BTree<K extends Comparable<K>, V> implements Iterable<BTree.Entry<K
     public V get(K key) {
         return key != null ? search(root, key) : null;
     }
-
 
     private V search(Node<K,V> x, K key) {
         int i = 0;

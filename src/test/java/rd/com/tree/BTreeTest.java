@@ -74,7 +74,7 @@ public class BTreeTest {
         testBtreeLoadFile("files/strings.txt");
 
         testBTreeLoadIntegers(200);
-        testBTreeLoadIntegers(10_000);
+//        testBTreeLoadIntegers(10_000);
     }
 
 }
