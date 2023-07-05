@@ -16,7 +16,7 @@ public class BTreeTest {
     public static void testBtreeLoadFile(String filePath) {
 
         long time = System.nanoTime();
-        BTree<String, String> bTree = new BTree<>(filePath);
+        BTree<String, String> bTree = new BTree<>(filePath,7);
         System.out.println("File loading + constructor time elapsed: " + (System.nanoTime() - time) + "\n");
 
         time = System.nanoTime();
@@ -42,7 +42,7 @@ public class BTreeTest {
 
     public static void testBTreeLoadIntegers(int max) {
         long time = System.nanoTime();
-        BTree<Integer, Integer> bTree = new BTree<>();
+        BTree<Integer, Integer> bTree = new BTree<>(5);
         System.out.println("Constructor time elapsed: " + (System.nanoTime() - time) + "\n");
 
         time = System.nanoTime();
