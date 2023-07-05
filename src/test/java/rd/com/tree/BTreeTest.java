@@ -71,8 +71,7 @@ public class BTreeTest {
 
     public static void main(String[] args) {
 
-        testBtreeLoadFile("file.txt");
-        testBtreeLoadFile("strings.txt");
+        testBtreeLoadFile("files/strings.txt");
 
         testBTreeLoadIntegers(200);
         testBTreeLoadIntegers(10_000);
